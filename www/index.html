@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+    Chat Example for Bluetooth Serial PhoneGap Plugin
+    http://github.com/don/BluetoothSerial
+
+    Copyright 2013 Don Coleman
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" href="css/happycircuit.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.3.min.css" />
+        
+        <link rel="stylesheet" href="css/index.css" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <title>Happy Circuits</title>
+    </head>
+    <body>
+        <div data-role="page" data-theme="b">
+            <div id= "header" data-role="header" data-position="fixed">
+                <h1 id="bar-title">HELLO</h1>
+            </div>
+            <div data-role="content">
+                <div id="page-scanning">
+                    <div data-role="content">
+                        <div id="message"><h2 id="scanMessage"></h2></div>
+                        <div class="blink">
+                            <p class="event searching">Looking for a curcuit)))</p>
+                        </div>
+                    </div>    
+                </div><!--/page-scanning -->
+                
+                <div id="page-bleConnection">
+                    <div id="connection">
+                        <div style="margin: 20px">
+                            Device: <br/>
+                            <select id="deviceList"></select>       
+                        </div>
+                        <p>
+                            <a class="topcoat-button--large is-disabled" id="connectButton">Connect</a>
+                        </p>
+                        <p>
+                            <a class="topcoat-button--large" id="listButton">List Devices</a>
+                        </p>
+                    </div>
+                
+                    <!-- <div id="chat">
+                        <h4 id="botmessage" class="text-left">Anybody there?</h4>
+                      <ul id="botmessage">
+                            <li id="message0" class="text-left">Anybody there?</li>
+                        </ul> 
+                    </div>  --> 
+                </div><!--/page-bleConnection -->
+    
+                <div id="page-getName">            
+                    <div id="bgimg"></div>
+                    <div class="profilePage">
+                        <ul class="content-ul">
+                            <li><div id="introimg" class="profile-circular"></div></li>
+                            <li><div id="introtext">
+                                <h1 class="yellingout">I'm</h1>
+                                <h3 style="margin-top:5px;">not a fridge.</h3></div>
+                            </li>
+                        </ul>   
+                    </div>
+                    <div id="askName">
+                        <h2>Gimme a lovely name!</h2>    
+                    </div>
+                    <div id="nameInputField">
+                        <form action="#" method="get" id="form-submit-name" class="" style=""></br>
+                            <input id="newName" name="name" placeholder="Tab here"></input>
+                            <input type="submit" value="Picked one!" id="nameSubmit"></input>
+                        </form>    
+                    </div>      
+                </div><!--/page-getName -->
+
+                <div id="page-chat">
+                    <div id="bgimg"></div>
+                    <div class="chatThread">
+                        <ul class="content-ul">
+                            <li><div id="chatimg" class="profile-circular-small"></div></li>
+                            <li><div id="chattext">
+                                <h4 id="botmessage" class="bubbledLeft">Anybody there?</h4></div>
+                            </li>
+                        </ul>   
+                    </div>
+                    
+                    <!--   <ul id="botmessage">
+                            <li id="message0" class="text-left">Anybody there?</li>
+                        </ul>  -->
+                </div><!--/page-chat -->
+    
+            </div>    
+            <footer>
+                <div id="statusMessage"></div>
+            </footer>  
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/viewController.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+            $.mobile.loadingMessage = false;
+            document.ontouchmove = function(e) {e.preventDefault()}; // prevent from scrolling horizontally on mobile
+            document.bind("mobileinit", function () {
+              $.mobile.ajaxEnabled = false;
+            });
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "framework": {
+                "parents": {
+                    "CoreBluetooth.framework": [
+                        {
+                            "xml": "false",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "config.xml": {
+                "parents": {
+                    "/widget": [
+                        {
+                            "xml": "<feature name=\"BluetoothSerial\"><param name=\"ios-package\" onload=\"true\" value=\"MEGBluetoothSerial\" /></feature>",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.megster.cordova.bluetoothserial": {
+            "PACKAGE_NAME": "com.mixedrealitylab.happycircuit"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "com.mixedrealitylab.happycircuit"
+        }
+    },
+    "dependent_plugins": {}
+}
