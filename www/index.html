@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <!-- 
@@ -26,10 +27,7 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" href="css/happycircuit.css" />
         <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
-        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.3.min.css" />
-        
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.3.min.css" />  
         <link rel="stylesheet" href="css/index.css" />
         <meta name="msapplication-tap-highlight" content="no" />
         <title>Happy Circuits</title>
@@ -37,7 +35,9 @@
     <body>
         <div data-role="page" data-theme="b">
             <div id= "header" data-role="header" data-position="fixed">
+                <a href="#" id="reset-btn" data-role="button" data-icon = "back" >Restart</a>
                 <h1 id="bar-title">HELLO</h1>
+                <a href="#" id="desc-btn" data-role="button" data-direction="reverse" data-icon="star" class="ui-btn-right">About</a>
             </div>
             <div data-role="content">
                 <div id="page-scanning">
@@ -48,28 +48,6 @@
                         </div>
                     </div>    
                 </div><!--/page-scanning -->
-                
-                <div id="page-bleConnection">
-                    <div id="connection">
-                        <div style="margin: 20px">
-                            Device: <br/>
-                            <select id="deviceList"></select>       
-                        </div>
-                        <p>
-                            <a class="topcoat-button--large is-disabled" id="connectButton">Connect</a>
-                        </p>
-                        <p>
-                            <a class="topcoat-button--large" id="listButton">List Devices</a>
-                        </p>
-                    </div>
-                
-                    <!-- <div id="chat">
-                        <h4 id="botmessage" class="text-left">Anybody there?</h4>
-                      <ul id="botmessage">
-                            <li id="message0" class="text-left">Anybody there?</li>
-                        </ul> 
-                    </div>  --> 
-                </div><!--/page-bleConnection -->
     
                 <div id="page-getName">            
                     <div id="bgimg"></div>
@@ -94,26 +72,25 @@
                 <div id="page-chat">
                     <div id="bgimg"></div>
                     <div class="chatThread">
-                        <ul class="content-ul">
+                        <ul class="chat-ul">
                             <li><div id="chatimg" class="profile-circular-small"></div></li>
                             <li><div id="chattext">
-                                <h4 id="botmessage" class="bubbledLeft">Anybody there?</h4></div>
+                                <p id="givenName"></p>
+                                <h4 id="botmessage" class="bubbledLeft" ></h4></div>
                             </li>
                         </ul>   
                     </div>
-                    
-                    <!--   <ul id="botmessage">
-                            <li id="message0" class="text-left">Anybody there?</li>
-                        </ul>  -->
                 </div><!--/page-chat -->
     
-            </div>    
-            <footer>
-                <div id="statusMessage"></div>
-            </footer>  
+            </div>  
+            <div id= "footer" data-role="footer" data-position="fixed">
+                BestBuy + Room For More Possibilities
+            </div>  
         </div>
 
         <script type="text/javascript" src="cordova.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/viewController.js"></script>
         <script type="text/javascript">

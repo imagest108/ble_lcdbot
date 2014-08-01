@@ -1,4 +1,8 @@
 var name = 'YOMI';
+var counter = 0;
+var missingMsgArray = ["Are you there?","I can't see you", "So lonely..", ".........", "ᗜੂͦ﹏ᗜੂͦ"];
+var greetingMsgArray = ["Hello, buddy!","I'm happy!", "Welcome<3","◉‿◉", "How are you?"];
+
 
 function ViewController(app) {
   this.app = app;
@@ -14,11 +18,6 @@ ViewController.prototype.scan = function() {
   $('#page-scanning').css('display','block');
   $('#bar-title').text('SCAN');
   $('#scanMessage').text('Bluetooth Scanning..');
-
-  // var html = $('body').html();
-  //
-  // console.log("********************in chat*************************");
-  // console.log(html);
 
 }
 
@@ -59,26 +58,65 @@ ViewController.prototype.startchat = function() {
   this.clear();
   $('#page-chat').css('display','block');
   $('#bar-title').text(name);
-  // var html = $('body').html();
-  // console.log("********************in chat*************************");
-  // console.log(html);
+  $('#givenName').text(name);
 
+  var message='';
+  message = "I'm "+name+"!";
+  $('#botmessage').attr("data-content",message);
+ 
 }
 
 ViewController.prototype.toggleMessage = function(caseNum) {
 
-  var message='';
   console.log("\n\nViewController::toggleMessage\n\n");
-    //this.clear();
-  if(caseNum == 0) message = "Are you there?";
-  else if(caseNum == 1) message = "Hello, buddy!";
+  
+  this.messageClear();
 
-  $('#botmessage').text(message);
+  var randomMessage = '';
+
+  var randomNum = Math.floor((Math.random() * 5) + 1); 
+  if(caseNum == 0) randomMessage = missingMsgArray[randomNum];
+  else if(caseNum == 1) randomMessage = greetingMsgArray[randomNum];
+  $('#botmessage').attr("data-content",randomMessage);
+
+  counter = 0;
 
 }
+
+ViewController.prototype.addMessage = function(caseNum) {
+
+   console.log("\n\nViewController::addMessage\n\n");
+  
+   var newId = 'botmessage'+counter.toString();
+   $('#chattext').append('<h4 id="tempID" class="bubbledLeft"></h4>');
+   $('#tempID').attr('id',newId);
+
+  var randomMessage = '';
+
+  var randomNum = Math.floor((Math.random() * 5) + 1); 
+  if(caseNum == 0) randomMessage = missingMsgArray[randomNum];
+  else if(caseNum == 1) randomMessage = greetingMsgArray[randomNum];
+
+  var newMessage = document.getElementById(newId);
+  newMessage.setAttribute("data-content", randomMessage);
+
+  counter++;
+
+}
+
 
 ViewController.prototype.clear = function() {
 
   $('#page-scanning').css('display','none');
   $('#page-getName').css('display','none');
+}
+
+ViewController.prototype.messageClear = function() {
+
+  var parent = document.getElementById("chattext");
+  for(var i = 0; i < counter; i++){
+    var childId = 'botmessage'+counter;
+    var childMessage = document.getElementById(childId);
+    parent.removeChild(childMessage);
+  }
 }

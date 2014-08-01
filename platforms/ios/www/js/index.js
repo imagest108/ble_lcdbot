@@ -20,12 +20,17 @@ var view;
 var cssDebug = false;
 var deviceID = "C46885AB-D1D5-41CD-B4F0-1B4428788B37";
 
+var caseNum = 0;
+var _caseNum = 0;
+var counter=0;
+
+
 var app = {
     // Application Constructor
     initialize: function() {
         if(cssDebug){
           view = new ViewController(app);
-          app.scan();
+          view.startchat();
         }else{
           this.bindEvents();
         }
@@ -118,23 +123,35 @@ var app = {
       console.log("Happy Circuits::onchat");
 
       view.startchat();
-      bluetoothSerial.subscribe("\n", app.onmessage, app.generateFailureFunction("Subscribe Failed"));
+      setTimeout(function(){
+        bluetoothSerial.subscribe("\n", app.onmessage, app.generateFailureFunction("Subscribe Failed"));
+      },500);  
     },
     onmessage: function(message) {
       // messages.value += "Them: " + message;
       // messages.scrollTop = messages.scrollHeight;
       console.log("from serial: "+message);
-      //view.startchat();
-      var caseNum = parseInt(message);
-
-      view.toggleMessage(caseNum);
-
-      if(caseNum == 1) {
-          console.log("say hello");
-      }else if(caseNum == 0) {
-          console.log("can't find you.");
-          botmessage.innerHTML = "Are you there?";
+      caseNum = parseInt(message);
+      
+      
+      if(caseNum != _caseNum) {
+        view.toggleMessage(caseNum);
       }
+      else if(caseNum == _caseNum){
+        // counter++;
+        // if(counter > 2000){
+        //     view.addMessage(caseNum);
+        //     counter = 0;
+        // }
+      };
+
+      // if(caseNum == 1) {
+      //     console.log("say hello");
+      // }else if(caseNum == 0) {
+      //     console.log("can't find you.");
+      //     botmessage.innerHTML = "Are you there?";
+      // }
+      _caseNum = caseNum;
     },
     generateFailureFunction: function(message) {
       var func = function(reason) { // some failure callbacks pass a reason
